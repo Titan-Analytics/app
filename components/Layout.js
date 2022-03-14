@@ -41,6 +41,33 @@ function Layout({ children, title }) {
   let bgImg = colorMode === "light" ? "/world-map-light.svg" : "/world-map.svg";
   let bgBlur = colorMode === "light" ? "#ffffff99" : "#00000099";
 
+
+  let links = [
+    {
+      title: "Player Performance Summary",
+      link: "/performance",
+    },
+
+    {
+      title: "Pre-Game Assessment",
+      link: "/pre-game",
+    },
+
+    {
+      title: "Post-Game Performance Review",
+      link: "/post-game",
+    },
+
+    {
+      title: "Overall Performance Review",
+      link: "/deep-dive",
+    },
+
+    {
+      title: "Guild Manager Summary Dashboard",
+      link: "/guild",
+    }
+  ]
   function navigation() {
     // if ( router.pathname != "/" ) {
     return (
@@ -69,28 +96,13 @@ function Layout({ children, title }) {
             </MenuButton>
 
             <MenuList>
-              <Link
-                href="/performance"
-                style={{ display: "block", height: "100%", width: "100%" }}
-              >
-                <MenuItem>Performance</MenuItem>
+              {
+                links.map((el, idx) => {
+                  return  <Link href={ el.link } key={"li" + idx}>
+                <MenuItem fontSize={"sm"}>{ el.title } </MenuItem>
               </Link>
-
-              <Link href="/pre-game">
-                <MenuItem>Pre-Game</MenuItem>
-              </Link>
-
-              <Link href="/post-game">
-                <MenuItem>Post-Game</MenuItem>
-              </Link>
-
-              <Link href="/deep-dive">
-                <MenuItem>Deep Dive</MenuItem>
-              </Link>
-
-              <Link href="/guild">
-                <MenuItem>Guild</MenuItem>
-              </Link>
+                })
+              }
             </MenuList>
           </Menu>
         </HStack>
