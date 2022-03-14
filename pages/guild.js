@@ -39,7 +39,7 @@ function Page() {
 
     {
       name: "Alvin",
-      image: "/players/person-1.png",
+      image: "/players/person-2.png",
       overall: "A",
       effort: "A",
       outcome: "A",
@@ -55,7 +55,7 @@ function Page() {
 
     {
       name: "Jessica",
-      image: "/players/person-1.png",
+      image: "/players/person-3.png",
       overall: "B",
       effort: "A",
       outcome: "B",
@@ -71,7 +71,7 @@ function Page() {
 
     {
       name: "Christopher",
-      image: "/players/person-1.png",
+      image: "/players/person-4.png",
       overall: "B",
       effort: "B",
       outcome: "B",
@@ -87,7 +87,7 @@ function Page() {
 
     {
       name: "Charlotte",
-      image: "/players/person-1.png",
+      image: "/players/person-6.png",
       overall: "B",
       effort: "A",
       outcome: "C",
@@ -103,7 +103,7 @@ function Page() {
 
     {
       name: "Jason",
-      image: "/players/person-1.png",
+      image: "/players/person-5.png",
       overall: "B",
       effort: "C",
       outcome: "A",
@@ -119,7 +119,7 @@ function Page() {
 
     {
       name: "Angel",
-      image: "/players/person-1.png",
+      image: "/players/person-7.png",
       overall: "C",
       effort: "C",
       outcome: "C",
@@ -135,7 +135,7 @@ function Page() {
 
     {
       name: "Alberto",
-      image: "/players/person-1.png",
+      image: "/players/person-8.png",
       overall: "C",
       effort: "B",
       outcome: "C",
@@ -151,7 +151,7 @@ function Page() {
 
     {
       name: "Eugene",
-      image: "/players/person-1.png",
+      image: "/players/person-9.png",
       overall: "C",
       effort: "C",
       outcome: "C",
