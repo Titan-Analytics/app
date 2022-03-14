@@ -85,28 +85,33 @@ function Page() {
               Situational/Trend Analysis
             </Heading>
 
+          
+
             <Text mb={4}>
-              <b>Situations</b> driving <b>>65%</b> success rate 75% win rate
-              Backdoor Bird lineups
+              <b>Situations</b> driving <b>{">65%"}</b> success rate 
             </Text>
+
+
 
             <Heading size="sm" mb={3}>
               Commentary / Recommendations
             </Heading>
 
             <UnorderedList mb={4}>
+
+
               <ListItem>
                 Continue to prioritize the enemy bird as the first target.
               </ListItem>
               <ListItem>
-                Continue to prioritize the enemy bird as the first target.
+                75% win rate Backdoor Bird lineups
               </ListItem>
             </UnorderedList>
 
+
             <Text mb={4}>
-              <b>Situations</b> driving <b>{"<"}35%</b> success rate only a 20%
-              win rate when the Chomp card is paird with a non-zero energy card
-              more than twice/game.
+             <b>Situations</b> driving <b>{"<35%"}</b> success rate
+
             </Text>
 
             <Heading size="sm" mb={3}>
@@ -116,6 +121,10 @@ function Page() {
             <UnorderedList mb={4}>
               <ListItem>
                 Remember to use the Chomp card alongside two zero energy cards
+              </ListItem>
+
+              <ListItem>
+                Only a 20% win rate when the Chomp card is paired with a non-zero energy card more than twice/game.
               </ListItem>
             </UnorderedList>
           </Box>
