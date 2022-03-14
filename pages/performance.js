@@ -19,8 +19,89 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
+import { useState } from "react";
+
 function Page() {
   const { colorMode } = useColorMode();
+
+
+  const [ chartsData, setChartsData ] = useState({
+    matchesPlayed: {
+      actual: 110, 
+      target: 120, 
+      variance: -10,
+      vp: 0.5,
+    },
+
+    winRate: {
+      actual: 110, 
+      target: 120, 
+      variance: -10,
+      vp: 0.5,
+    },
+
+    dailyEarnings: {
+      actual: 60, 
+      target: 72, 
+      variance: -12,
+      vp: 0.5,
+    },
+
+    projectEarnings: {
+      actual: 847, 
+      target: 1008, 
+      variance: -161,
+      vp: 0.5,
+    },
+
+  });
+
+  function randomize () {
+
+    let matchesPlayed = 100 + (Math.floor(Math.random() * 20)) * ( Math.random() < 0.5 ? -1 : 1 );
+    let matchesTarget = 100 + (Math.floor(Math.random() * 20)) * ( Math.random() < 0.5 ? -1 : 1 );
+    let matchesVp = Math.abs(  ( matchesPlayed - matchesTarget ) / matchesTarget  );
+
+
+    let winActual = 100 * (Math.random()).toFixed(2);
+    let winTarget = 100 * (Math.random()).toFixed(2);
+    let winVp = Math.abs(  ( winActual - winTarget ) / winTarget  ).toFixed(2);
+
+    const newData = {
+      matchesPlayed: {
+        actual: matchesPlayed, 
+        target: matchesTarget, 
+        variance: matchesPlayed - matchesTarget,
+        vp: matchesVp.toFixed(2),
+      },
+  
+      winRate: {
+        actual: winActual.toFixed(0), 
+        target: winTarget.toFixed(0), 
+        variance: winActual - winTarget,
+        vp: winVp,
+      },
+  
+      dailyEarnings: {
+        actual: 60, 
+        target: 72, 
+        variance: -12,
+        vp: 0.5,
+      },
+  
+      projectEarnings: {
+        actual: 847, 
+        target: 1008, 
+        variance: -161,
+        vp: 0.5,
+      },
+    }
+
+    setChartsData(newData);
+  }
+
+
+
   let bgBlur = colorMode === "light" ? "#ffffffbb" : "#000000bb";
 
   return (
@@ -46,7 +127,7 @@ function Page() {
 
                 <Box>Junior Scholar</Box>
 
-                <Box>Phillipenes</Box>
+                <Box>Philippines</Box>
 
                 <Box>Earning Split: 65/35</Box>
               </Box>
@@ -91,7 +172,7 @@ function Page() {
               </UnorderedList>
             </Box>
 
-            <Box mb={2}>
+            <Box mb={2} display="none">
               <Heading size="sm">Experience</Heading>
 
               <UnorderedList>
@@ -122,9 +203,9 @@ function Page() {
             </Heading>
 
             <HStack mb={4}>
-              <Input type={"date"} maxWidth={220} />
+              <Input type={"date"} maxWidth={220} onChange={ randomize } />
               <span style={{ margin: "0 20px" }}>to</span>
-              <Input type="date" maxWidth={220} />
+              <Input type="date" maxWidth={220} onChange={ randomize } />
             </HStack>
 
             <SimpleGrid
@@ -140,7 +221,7 @@ function Page() {
 
                   <BorderCenter minHeight={12}>
                     <Box>
-                      <Box fontSize={"lg"}>110</Box>
+                      <Box fontSize={"lg"}>{chartsData.matchesPlayed.actual}</Box>
 
                       <Box fontWeight={"bold"} fontSize="xs">
                         Actual
@@ -150,7 +231,7 @@ function Page() {
 
                   <BorderCenter minHeight={12}>
                     <Box>
-                      <Box fontSize={"lg"}>110</Box>
+                      <Box fontSize={"lg"}>{chartsData.matchesPlayed.target}</Box>
 
                       <Box fontWeight={"bold"} fontSize="xs">
                         Target
@@ -160,7 +241,7 @@ function Page() {
 
                   <BorderCenter minHeight={12}>
                     <Box>
-                      <Box fontSize={"lg"}>110</Box>
+                      <Box fontSize={"lg"}>{chartsData.matchesPlayed.variance}</Box>
 
                       <Box fontWeight={"bold"} fontSize="xs">
                         Variance
@@ -169,7 +250,7 @@ function Page() {
                   </BorderCenter>
                 </Stack>
 
-                <Box className="gauge" pb={2} maxWidth={280} m="0 auto">
+                <Box className="gauge"  maxWidth={220} m="0 auto">
                   <GaugeChart
                     arcWidth={0.3}
                     animateDuration={1000}
@@ -177,8 +258,13 @@ function Page() {
                     needleBaseColor={useColorModeValue("#A0AEC0", "#718096")}
                     textColor={useColorModeValue("blue.500", "white")}
                     colors={["#E53E3E", "#ECC94B", "#38A169"]}
-                    percent={0.9}
+                    percent={chartsData.matchesPlayed.vp}
                   />
+                </Box>
+
+                
+                <Box fontWeight={"bold"} fontSize="xs" mb={4}>
+                    Variance vs. peers
                 </Box>
               </Box>
 
@@ -190,7 +276,7 @@ function Page() {
 
                   <BorderCenter minHeight={12}>
                     <Box>
-                      <Box fontSize={"lg"}>55%</Box>
+                      <Box fontSize={"lg"}>{chartsData.winRate.actual}%</Box>
 
                       <Box fontWeight={"bold"} fontSize="xs">
                         Actual
@@ -200,7 +286,7 @@ function Page() {
 
                   <BorderCenter minHeight={12}>
                     <Box>
-                      <Box fontSize={"lg"}>48%</Box>
+                      <Box fontSize={"lg"}>{chartsData.winRate.target}%</Box>
 
                       <Box fontWeight={"bold"} fontSize="xs">
                         Target
@@ -210,7 +296,7 @@ function Page() {
 
                   <BorderCenter minHeight={12}>
                     <Box>
-                      <Box fontSize={"lg"}>30</Box>
+                      <Box fontSize={"lg"}>{chartsData.winRate.variance}%</Box>
 
                       <Box fontWeight={"bold"} fontSize="xs">
                         Variance
@@ -219,7 +305,7 @@ function Page() {
                   </BorderCenter>
                 </Stack>
 
-                <Box className="gauge" pb={2} maxWidth={280} m="0 auto">
+                <Box className="gauge"  maxWidth={220} m="0 auto">
                   <GaugeChart
                     arcWidth={0.3}
                     animateDuration={1000}
@@ -227,8 +313,12 @@ function Page() {
                     needleBaseColor={useColorModeValue("#A0AEC0", "#718096")}
                     textColor={useColorModeValue("blue.500", "white")}
                     colors={["#E53E3E", "#ECC94B", "#38A169"]}
-                    percent={0.2}
+                    percent={chartsData.winRate.vp}
                   />
+                </Box>
+
+                <Box fontWeight={"bold"} fontSize="xs" mb={4}>
+                    Variance vs. peers
                 </Box>
               </Box>
 
@@ -269,7 +359,7 @@ function Page() {
                   </BorderCenter>
                 </Stack>
 
-                <Box className="gauge" pb={2} maxWidth={280} m="0 auto">
+                <Box className="gauge"  maxWidth={220} m="0 auto">
                   <GaugeChart
                     arcWidth={0.3}
                     animateDuration={1000}
@@ -279,6 +369,10 @@ function Page() {
                     colors={["#E53E3E", "#ECC94B", "#38A169"]}
                     percent={0.4}
                   />
+                </Box>
+
+                <Box fontWeight={"bold"} fontSize="xs" mb={4}>
+                    Variance vs. peers
                 </Box>
               </Box>
 
@@ -319,7 +413,7 @@ function Page() {
                   </BorderCenter>
                 </Stack>
 
-                <Box className="gauge" pb={2} maxWidth={280} m="0 auto">
+                <Box className="gauge"  maxWidth={220} m="0 auto">
                   <GaugeChart
                     arcWidth={0.3}
                     animateDuration={1000}
@@ -329,6 +423,10 @@ function Page() {
                     colors={["#E53E3E", "#ECC94B", "#38A169"]}
                     percent={0.5}
                   />
+                </Box>
+
+                <Box fontWeight={"bold"} fontSize="xs" mb={4}>
+                    Variance vs. peers
                 </Box>
               </Box>
             </SimpleGrid>
