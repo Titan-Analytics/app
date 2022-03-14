@@ -58,42 +58,50 @@ function Page() {
 
   function randomize () {
 
-    let matchesPlayed = 100 + (Math.floor(Math.random() * 20)) * ( Math.random() < 0.5 ? -1 : 1 );
-    let matchesTarget = 100 + (Math.floor(Math.random() * 20)) * ( Math.random() < 0.5 ? -1 : 1 );
-    let matchesVp = Math.abs(  ( matchesPlayed - matchesTarget ) / matchesTarget  );
+    let matchesPlayed = (100 + (Math.floor(Math.random() * 20)) * ( Math.random() < 0.5 ? -1 : 1 )).toFixed(0);
+    let matchesTarget = (100 + (Math.floor(Math.random() * 20)) * ( Math.random() < 0.5 ? -1 : 1 )).toFixed(0);
+    let matchesVp = (Math.abs(  matchesPlayed - matchesTarget  )  / matchesTarget ).toFixed(2);
 
 
-    let winActual = 100 * (Math.random()).toFixed(2);
-    let winTarget = 100 * (Math.random()).toFixed(2);
-    let winVp = Math.abs(  ( winActual - winTarget ) / winTarget  ).toFixed(2);
+    let winActual = (100 * ( Math.random() )).toFixed(0);
+    let winTarget = (100 * ( Math.random() )).toFixed(0);
+    let winVp = (( Math.abs(  winActual - winTarget ) / winTarget  ) / 100) .toFixed(2);
+
+    let earnActual = (100 + ( Math.random() * 100 )).toFixed(0);
+    let earnTarget = (100 + ( Math.random() * 100 )).toFixed(0);
+    let earnVp = (Math.abs(  earnActual - earnTarget ) / earnTarget  ).toFixed(2);
+
+    let projActual = (100 + ( Math.random() * 700)).toFixed(0);
+    let projTarget = (100 + (  Math.random() * 700)).toFixed(0);
+    let projVp = (Math.abs(   projActual - projTarget ) / projTarget  ).toFixed(2);
 
     const newData = {
       matchesPlayed: {
         actual: matchesPlayed, 
         target: matchesTarget, 
         variance: matchesPlayed - matchesTarget,
-        vp: matchesVp.toFixed(2),
+        vp: matchesVp,
       },
   
       winRate: {
-        actual: winActual.toFixed(0), 
-        target: winTarget.toFixed(0), 
+        actual: winActual, 
+        target: winTarget, 
         variance: winActual - winTarget,
         vp: winVp,
       },
   
       dailyEarnings: {
-        actual: 60, 
-        target: 72, 
-        variance: -12,
-        vp: 0.5,
+        actual: earnActual, 
+        target: earnTarget, 
+        variance: earnActual - earnTarget,
+        vp: earnVp,
       },
   
       projectEarnings: {
-        actual: 847, 
-        target: 1008, 
-        variance: -161,
-        vp: 0.5,
+        actual: projActual, 
+        target: projTarget, 
+        variance: projActual - projTarget,
+        vp: projVp,
       },
     }
 
@@ -253,6 +261,8 @@ function Page() {
                 <Box className="gauge"  maxWidth={220} m="0 auto">
                   <GaugeChart
                     arcWidth={0.3}
+                    animate={false} 
+
                     animateDuration={1000}
                     needleColor={useColorModeValue("#A0AEC0", "#718096")}
                     needleBaseColor={useColorModeValue("#A0AEC0", "#718096")}
@@ -309,6 +319,8 @@ function Page() {
                   <GaugeChart
                     arcWidth={0.3}
                     animateDuration={1000}
+                    animate={false} 
+
                     needleColor={useColorModeValue("#A0AEC0", "#718096")}
                     needleBaseColor={useColorModeValue("#A0AEC0", "#718096")}
                     textColor={useColorModeValue("blue.500", "white")}
@@ -330,7 +342,7 @@ function Page() {
 
                   <BorderCenter minHeight={12}>
                     <Box>
-                      <Box fontSize={"lg"}>60 SLP</Box>
+                      <Box fontSize={"lg"}>{chartsData.dailyEarnings.actual } SLP</Box>
 
                       <Box fontWeight={"bold"} fontSize="xs">
                         Actual
@@ -340,7 +352,7 @@ function Page() {
 
                   <BorderCenter minHeight={12}>
                     <Box>
-                      <Box fontSize={"lg"}>72 SLP</Box>
+                      <Box fontSize={"lg"}>{ chartsData.dailyEarnings.target } SLP</Box>
 
                       <Box fontWeight={"bold"} fontSize="xs">
                         Target
@@ -350,7 +362,7 @@ function Page() {
 
                   <BorderCenter minHeight={12}>
                     <Box>
-                      <Box fontSize={"lg"}>40</Box>
+                      <Box fontSize={"lg"}>{ chartsData.dailyEarnings.variance }</Box>
 
                       <Box fontWeight={"bold"} fontSize="xs">
                         Variance
@@ -363,11 +375,13 @@ function Page() {
                   <GaugeChart
                     arcWidth={0.3}
                     animateDuration={1000}
+                    animate={false} 
+
                     needleColor={useColorModeValue("#A0AEC0", "#718096")}
                     needleBaseColor={useColorModeValue("#A0AEC0", "#718096")}
                     textColor={useColorModeValue("blue.500", "white")}
                     colors={["#E53E3E", "#ECC94B", "#38A169"]}
-                    percent={0.4}
+                    percent={ chartsData.dailyEarnings.vp }
                   />
                 </Box>
 
@@ -384,7 +398,7 @@ function Page() {
 
                   <BorderCenter minHeight={12}>
                     <Box>
-                      <Box fontSize={"lg"}>847 SLP</Box>
+                      <Box fontSize={"lg"}>{ chartsData.projectEarnings.actual } SLP</Box>
 
                       <Box fontWeight={"bold"} fontSize="xs">
                         Actual
@@ -394,7 +408,7 @@ function Page() {
 
                   <BorderCenter minHeight={12}>
                     <Box>
-                      <Box fontSize={"lg"}>1,008 SLP</Box>
+                      <Box fontSize={"lg"}>{ chartsData.projectEarnings.target} SLP</Box>
 
                       <Box fontWeight={"bold"} fontSize="xs">
                         Target
@@ -404,7 +418,7 @@ function Page() {
 
                   <BorderCenter minHeight={12}>
                     <Box>
-                      <Box fontSize={"lg"}>161 SLP</Box>
+                      <Box fontSize={"lg"}>{ chartsData.projectEarnings.variance } SLP</Box>
 
                       <Box fontWeight={"bold"} fontSize="xs">
                         Variance
@@ -417,11 +431,13 @@ function Page() {
                   <GaugeChart
                     arcWidth={0.3}
                     animateDuration={1000}
+                    animate={false} 
+
                     needleColor={useColorModeValue("#A0AEC0", "#718096")}
                     needleBaseColor={useColorModeValue("#A0AEC0", "#718096")}
                     textColor={useColorModeValue("blue.500", "white")}
                     colors={["#E53E3E", "#ECC94B", "#38A169"]}
-                    percent={0.5}
+                    percent={ chartsData.projectEarnings.vp }
                   />
                 </Box>
 
