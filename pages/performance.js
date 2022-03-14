@@ -21,7 +21,6 @@ import {
 
 function Page() {
   const { colorMode } = useColorMode();
-
   let bgBlur = colorMode === "light" ? "#ffffffbb" : "#000000bb";
 
   return (
