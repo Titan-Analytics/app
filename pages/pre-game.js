@@ -101,7 +101,7 @@ function Page() {
     {
       name: "Foobar",
       image: "/axis/black.png",
-      type: "Rock",
+      type: "Beast",
       stats: [
         {
           title: "Health",
@@ -123,7 +123,7 @@ function Page() {
     {
       name: "Jimmy",
       image: "/axis/white.png",
-      type: "Angel",
+      type: "Bird",
       stats: [
         {
           title: "Health",
@@ -145,7 +145,7 @@ function Page() {
     {
       name: "Sandra",
       image: "/axis/yellow.png",
-      type: "Sun",
+      type: "Sky",
       stats: [
         {
           title: "Health",
@@ -184,9 +184,6 @@ function Page() {
                   Aggressive player focused on quickly discarding enemy’s deck
                 </ListItem>
 
-                <ListItem>
-                  Aggressive player focused on quickly discarding enemy’s deck
-                </ListItem>
               </UnorderedList>
             </Box>
 
@@ -216,7 +213,7 @@ function Page() {
               Reminders
             </Heading>
 
-            <List spacing={2}>
+            <List spacing={3}>
               <ListItem display="flex">
                 <ListIcon
                   as={BsFillCheckCircleFill}
@@ -224,27 +221,17 @@ function Page() {
                   color="green.500"
                 />
                 <Center pl={1} height="100%" justifyContent="left">
-                  Card counting
+                Prioritize enemy{"'"}s bird as first target.
                 </Center>
               </ListItem>
 
               <ListItem display="flex">
                 <ListIcon as={BsXSquareFill} fontSize="23px" color="red.500" />
                 <Center pl={1} height="100%" justifyContent="left">
-                  Timing of passing turns
+                Pair Chomp w/ non-zero energy cards.
                 </Center>
               </ListItem>
 
-              <ListItem display="flex">
-                <ListIcon
-                  as={BsFillCheckCircleFill}
-                  fontSize="24px"
-                  color="green.500"
-                />
-                <Center pl={1} height="100%" justifyContent="left">
-                  Tunnel vision
-                </Center>
-              </ListItem>
             </List>
           </Box>
         </Box>
@@ -400,7 +387,7 @@ function Page() {
               Player Reminders
             </Heading>
 
-            <List spacing={2}>
+            <List spacing={3}>
               <ListItem display="flex">
                 <ListIcon
                   as={BsFillCheckCircleFill}
@@ -408,27 +395,17 @@ function Page() {
                   color="green.500"
                 />
                 <Center pl={1} height="100%" justifyContent="left">
-                  Card counting
+                  Remember to count cards in later stages.
                 </Center>
               </ListItem>
 
               <ListItem display="flex">
                 <ListIcon as={BsXSquareFill} fontSize="23px" color="red.500" />
                 <Center pl={1} height="100%" justifyContent="left">
-                  Timing of passing turns
+                  Target beast without 3+ attack cards.
                 </Center>
               </ListItem>
 
-              <ListItem display="flex">
-                <ListIcon
-                  as={BsFillCheckCircleFill}
-                  fontSize="24px"
-                  color="green.500"
-                />
-                <Center pl={1} height="100%" justifyContent="left">
-                  Tunnel vision
-                </Center>
-              </ListItem>
             </List>
           </Box>
         </Box>

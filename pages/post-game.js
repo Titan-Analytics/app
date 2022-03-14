@@ -100,7 +100,7 @@ function Page() {
               Chance Of Success
             </Heading>
 
-            <Box className="gauge" maxWidth={280} m="0 auto" mb={-3}>
+            <Box className="gauge" maxWidth={220} mb={-3}>
               <GaugeChart
                 arcWidth={0.3}
                 animateDuration={1000}
@@ -108,7 +108,7 @@ function Page() {
                 needleBaseColor={useColorModeValue("#A0AEC0", "#718096")}
                 textColor={useColorModeValue("blue.500", "white")}
                 colors={["#E53E3E", "#ECC94B", "#38A169"]}
-                percent={0.9}
+                percent={0.55}
               />
             </Box>
           </Box>
@@ -171,7 +171,7 @@ function Page() {
                   color="yellow.400"
                 />
                 <Center pl={1} height="100%" justifyContent="left">
-                  Passing when not having a combo/chain.
+                  Utilize buffs in early stages of battle. Try to time buffs for when the enemy uses high defense cards.
                 </Center>
               </ListItem>
 
@@ -182,16 +182,16 @@ function Page() {
                   color="yellow.400"
                 />
                 <Center pl={1} height="100%" justifyContent="left">
-                  Timing of buffs.
+                Try to pass on turns when no chains or combos available. Use conbo cards against enemy axies with high damage output.
                 </Center>
               </ListItem>
             </List>
 
-            <Heading size="sm" mb={3}>
+            <Heading size="sm" mb={3} display="none">
               Areas Of Error
             </Heading>
 
-            <List spacing={2} mb={4}>
+            <List spacing={2} mb={4} display="none">
               <ListItem display="flex">
                 <ListIcon as={BsXSquareFill} fontSize="23px" color="red.500" />
                 <Center pl={1} height="100%" justifyContent="left">
@@ -257,11 +257,6 @@ function Page() {
                 }
               </ListItem>
 
-              <ListItem>
-                {
-                  "“I feel it would be easier to win if my supporting axies had more debuff abilities.”"
-                }
-              </ListItem>
             </UnorderedList>
           </Box>
         </Box>
