@@ -136,18 +136,20 @@ function Layout({ children, title }) {
           backdropFilter={"blur(2px)"}
         ></Box>
         <Box
-          as="main"
+         
+          height="100vh"
+          overflow="scroll"
+        >
+        <Box  as="main"
           p={[4, 6, 6, 6, 10]}
           maxWidth={1200}
           m="0 auto"
           position={"relative"}
-          zIndex={2}
-          height="100vh"
-          overflow="scroll"
-        >
+          zIndex={2}>
           {navigation()}
 
           {children}
+          </Box>
         </Box>
       </Box>
     </Box>

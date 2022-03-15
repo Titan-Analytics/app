@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-
+import { useTable } from 'react-table'
+import styles from "@emotion/styled";
 import Layout from "../components/Layout";
 
 import {
@@ -13,9 +14,47 @@ import {
   useColorMode,
   Center,
   Text,
+  HStack,
+  Divider, 
 } from "@chakra-ui/react";
 
 import { AiOutlineHome } from "react-icons/ai";
+
+import { useMemo } from "react";
+
+
+const Styles = styles.div`
+
+  table {
+    border-spacing: 0;
+    // border: 1px solid black;
+
+    tr {
+      :last-child {
+        td {
+          border-bottom: 0;
+        }
+      }
+    }
+
+    th,
+    td {
+      margin: 0;
+      padding: 0.5rem;
+      text-align: center;
+      // border-bottom: 1px solid black;
+      // border-right: 1px solid black;
+
+      :last-child {
+        border-right: 0;
+      }
+    }
+
+    td {
+      font-size: 16px;
+    }
+  }
+`;
 
 function Page() {
   const { colorMode } = useColorMode();
@@ -27,13 +66,13 @@ function Page() {
       overall: "A",
       effort: "A",
       outcome: "A",
-      training: 5,
+      hours: 5,
       adherance: "A",
       attitude: "A",
       utilization: 100,
-      winRate: 60,
-      earningsPer: 6,
-      totalEarnings: 600,
+      rate: 60,
+      game: 6,
+      total: 600,
       yield: 65,
     },
 
@@ -43,13 +82,13 @@ function Page() {
       overall: "A",
       effort: "A",
       outcome: "A",
-      training: 5,
+      hours: 5,
       adherance: "A",
       attitude: "A",
       utilization: 100,
-      winRate: 58,
-      earningsPer: 6,
-      totalEarnings: 580,
+      rate: 58,
+      game: 6,
+      total: 580,
       yield: 60,
     },
 
@@ -59,13 +98,13 @@ function Page() {
       overall: "B",
       effort: "A",
       outcome: "B",
-      training: 5,
+      hours: 5,
       adherance: "A",
       attitude: "A",
       utilization: 100,
-      winRate: 53,
-      earningsPer: 5,
-      totalEarnings: 530,
+      rate: 53,
+      game: 5,
+      total: 530,
       yield: 55,
     },
 
@@ -75,13 +114,13 @@ function Page() {
       overall: "B",
       effort: "B",
       outcome: "B",
-      training: 4,
+      hours: 4,
       adherance: "B",
       attitude: "B",
       utilization: 80,
-      winRate: 52,
-      earningsPer: 5,
-      totalEarnings: 416,
+      rate: 52,
+      game: 5,
+      total: 416,
       yield: 50,
     },
 
@@ -91,13 +130,13 @@ function Page() {
       overall: "B",
       effort: "A",
       outcome: "C",
-      training: 5,
+      hours: 5,
       adherance: "A",
       attitude: "A",
       utilization: 100,
-      winRate: 48,
-      earningsPer: 4,
-      totalEarnings: 480,
+      rate: 48,
+      game: 4,
+      total: 480,
       yield: 45,
     },
 
@@ -107,13 +146,13 @@ function Page() {
       overall: "B",
       effort: "C",
       outcome: "A",
-      training: 2,
+      hours: 2,
       adherance: "C",
       attitude: "C",
       utilization: 70,
-      winRate: 55,
-      earningsPer: 5,
-      totalEarnings: 385,
+      rate: 55,
+      game: 5,
+      total: 385,
       yield: 50,
     },
 
@@ -123,13 +162,13 @@ function Page() {
       overall: "C",
       effort: "C",
       outcome: "C",
-      training: 0,
+      hours: 0,
       adherance: "C",
       attitude: "C",
       utilization: 50,
-      winRate: 55,
-      earningsPer: 3,
-      totalEarnings: 220,
+      rate: 55,
+      game: 3,
+      total: 220,
       yield: 30,
     },
 
@@ -139,13 +178,13 @@ function Page() {
       overall: "C",
       effort: "B",
       outcome: "C",
-      training: 3,
+      hours: 3,
       adherance: "B",
       attitude: "B",
       utilization: 80,
-      winRate: 45,
-      earningsPer: 3,
-      totalEarnings: 360,
+      rate: 45,
+      game: 3,
+      total: 360,
       yield: 30,
     },
 
@@ -155,28 +194,193 @@ function Page() {
       overall: "C",
       effort: "C",
       outcome: "C",
-      training: 1,
+      hours: 1,
       adherance: "C",
       attitude: "C",
       utilization: 60,
-      winRate: 42,
-      earningsPer: 3,
-      totalEarnings: 252,
+      rate: 42,
+      game: 3,
+      total: 252,
       yield: 30,
     },
   ];
 
+
+
+
+  const columns = useMemo(
+    () => [
+
+      {
+        Header: 'Player',
+        columns: [
+          {
+            Header: 'Name',
+            accessor: 'name',
+          },
+
+          {
+            Header: 'Image',
+            accessor: 'image',
+          },
+
+        ],
+      },
+
+      {
+        Header: 'Summary Scores',
+        columns: [
+          {
+            Header: 'Overall',
+            accessor: 'overall',
+          },
+
+          {
+            Header: 'Effort',
+            accessor: 'effort',
+          },
+
+          {
+            Header: 'Outcome',
+            accessor: 'outcome',
+          },
+        ],
+      },
+      {
+        Header: 'Behavioural/Effort Metrics',
+        columns: [
+          {
+            Header: 'Training Hours',
+            accessor: 'hours',
+          },
+          {
+            Header: 'Coaching Adherance',
+            accessor: 'adherance',
+          },
+          {
+            Header: 'Attitude',
+            accessor: 'attitude',
+          },
+          {
+            Header: 'Utilization',
+            accessor: 'utilization',
+          },
+        ],
+      },
+
+      {
+        Header: 'Outcome Metrics',
+        columns: [
+          {
+            Header: 'Win Rate',
+            accessor: 'rate',
+          },
+          {
+            Header: 'Game Earnings',
+            accessor: 'game',
+          },
+          {
+            Header: 'Total Earnings',
+            accessor: 'total',
+          },
+          {
+            Header: 'Yield',
+            accessor: 'yield',
+          },
+        ],
+      },
+    ],
+    []
+  )
+
+
+  const data = useMemo(() => playerList, [])
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+  } = useTable({
+    columns,
+    data,
+  })
+
+
   return (
     <Layout title="Guild">
+      <Styles>
+
       <Stack spacing={4}>
 
+        <Box bg={ bgBlur } p={5} rounded="xl" borderWidth={2}>
+        <table {...getTableProps()} style={{width: "100%"}}>
+          <thead>
+            {headerGroups.map(headerGroup => {
+              
+              if (headerGroup.headers.length < 10 ) {
+                return  (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map(column => (
+                  <Box as="th" fontSize="lg" {...column.getHeaderProps()}>{column.render('Header')}</Box>
+                ))}
+              </tr>
+            ) 
+              }
+              return  (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map(column => (
+                  <Box as="th" fontSize="sm" {...column.getHeaderProps()}>{column.render('Header')}</Box>
+                ))}
+              </tr>
+            )
+            }
+            )}
+          </thead>
+          <tbody {...getTableBodyProps()}>
+            {rows.map((row, i) => {
+              prepareRow(row)
+              return (
+                <Box as="tr" {...row.getRowProps()}>
+                  {row.cells.map(cell => {
+                    if (cell.column.Header === 'Image') {
+                      return <td {...cell.getCellProps()}>
+                        <Box
+                          rounded="xl"
+                          height={[90, 90, ]}
+                          width={[90, 90, ]}
+                          position="relative"
+                          overflow="hidden"
+                        >
+                          <Image src={cell.value} layout="fill" objectFit="cover" />
+                        </Box>
+                      </td>
+                    } else if (cell.column.Header === 'Yield') {
+                      return <td {...cell.getCellProps()}>{cell.render('Cell')}%</td>
+                    } else if (cell.column.Header === 'Game Earnings') {
+                      return <td {...cell.getCellProps()}>{cell.render('Cell')} SLP</td>
+                    } else if (cell.column.Header === 'Total Earnings') {
+                      return <td {...cell.getCellProps()}>{cell.render('Cell')} SLP</td>
+                    } else {
+                      return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                    }
+
+                  })}
+
+
+                </Box>
+              )
+            })}
+          </tbody>
+        </table>
+</Box>
 
         {playerList.map((el, idx) => {
           return (
-            <Box key={"p" + idx} bg={bgBlur} borderWidth={2} rounded="xl" p={[4, 4, 4, 5]}>
-              <Box display={["inline-flex", "inline-flex", "inline-flex", "flex"]} wrap="wrap" gap={[5, 5, 8]} justifyContent="left">
-                <Box flex={1}>
-
+            <Box display="none" key={"p" + idx} bg={bgBlur} borderWidth={2} rounded="xl" p={[4, 4, 4, 5]}>
+              <HStack gap={[5, 5, 8]} justifyContent="left" wrap="wrap">
+                <Box >
                   <Heading size="sm" pl={2} mb={1}>
                     {el.name}
                   </Heading>
@@ -184,7 +388,7 @@ function Page() {
                   <Box
                     rounded="xl"
                     height={[90, 90, 120]}
-                    width={[90, 90,   120]}
+                    width={[90, 90, 120]}
                     position="relative"
                     overflow="hidden"
                   >
@@ -194,99 +398,88 @@ function Page() {
 
                 </Box>
 
-                <Box display="flex"  justifyContent={["center", "center", "center", "left"]} flex={[ 8]} flexWrap="wrap" gap="8">
 
-                  <Box flex={3} >
-                    <Center height="100%">
-                      <Box minWidth="250" maxWidth="300px"  >
+                <Box >
 
-                    <Heading size="sm" mb={4} textAlign="center">
-                      Summary Scores
-                    </Heading>
+                  <Heading size="sm" mb={4} >
+                    Summary Scores
+                  </Heading>
 
-                    <Box display="flex">
-                      <Box flex={1} textAlign="center">
-                        <Text fontSize="2xl">{el.overall}</Text>
-                        <Text fontSize="xs" fontWeight="bold">
-                          Overall
-                        </Text>
-                      </Box>
-
-                      <Box flex={1} textAlign="center">
-                        <Text fontSize="2xl">{el.effort}</Text>
-                        <Text fontSize="xs" fontWeight="bold">
-                          Effort
-                        </Text>
-                      </Box>
-
-                      <Box flex={1} textAlign="center">
-                        <Text fontSize="2xl">{el.outcome}</Text>
-                        <Text fontSize="xs" fontWeight="bold">
-                          Outcome
-                        </Text>
-                      </Box>
+                  <HStack spacing={6} >
+                    <Box textAlign={"center"}>
+                      <Text fontSize="2xl">{el.overall}</Text>
+                      <Text fontSize="xs" fontWeight="bold">
+                        Overall
+                      </Text>
                     </Box>
-</Box>
-                    </Center>
 
-                  </Box>
-
-                  <Box flex={[4]}>
-
-                  <Center height="100%">
-                      <Box  minWidth="300px" maxWidth="350px"  >
-                    <Heading size="sm" mb={4} textAlign="center">
-                      Behavioural/Effort Metrics
-                    </Heading>
-
-
-                    <Box display="flex" >
-
-
-                      <Box flex={1} textAlign="center">
-                        <Text fontSize="2xl">{el.training}</Text>
-                        <Text fontSize="xs" fontWeight="bold">
-                          Training Hours
-                        </Text>
-                      </Box>
-
-
-                      <Box flex={1} textAlign="center">
-                        <Text fontSize="2xl">{el.adherance}</Text>
-                        <Text fontSize="xs" fontWeight="bold">
-                          Coaching Adherance
-                        </Text>
-                      </Box>
-
-                      <Box flex={1} textAlign="center">
-                        <Text fontSize="2xl">{el.attitude}</Text>
-                        <Text fontSize="xs" fontWeight="bold">
-                          Attitude
-                        </Text>
-                      </Box>
-
-                      <Box flex={1} textAlign="center">
-                        <Text fontSize="2xl">{el.utilization}</Text>
-                        <Text fontSize="xs" fontWeight="bold">
-                          Utilization
-                        </Text>
-                      </Box>
+                    <Box textAlign={"center"}>
+                      <Text fontSize="2xl">{el.effort}</Text>
+                      <Text fontSize="xs" fontWeight="bold">
+                        Effort
+                      </Text>
                     </Box>
+
+                    <Box textAlign={"center"}>
+                      <Text fontSize="2xl">{el.outcome}</Text>
+                      <Text fontSize="xs" fontWeight="bold">
+                        Outcome
+                      </Text>
                     </Box>
-                    </Center>
+                  </HStack>
 
-                  </Box>
+                </Box>
+
+                <Box >
+
+                  <Heading size="sm" mb={4}>
+                    Behavioural/Effort Metrics
+                  </Heading>
 
 
-                  <Box flex={[4]} minWidth="300px" maxWidth="350px" >
+                  <HStack spacing={6} >
+                    <Box textAlign="center" >
+                      <Text fontSize="2xl">{el.training}</Text>
+                      <Text fontSize="xs" fontWeight="bold" maxWidth={20}>
+                        Training Hours
+                      </Text>
+                    </Box>
 
-                  <Center height="100%">
-                      <Box  minWidth="300px" maxWidth="350px"  >
 
-                    <Heading size="sm" mb={4} textAlign="center">
+                    <Box textAlign="center">
+                      <Text fontSize="2xl">{el.adherance}</Text>
+                      <Text fontSize="xs" fontWeight="bold">
+                        Coaching Adherance
+                      </Text>
+                    </Box>
+
+                    <Box textAlign="center">
+                      <Text fontSize="2xl">{el.attitude}</Text>
+                      <Text fontSize="xs" fontWeight="bold">
+                        Attitude
+                      </Text>
+                    </Box>
+
+                    <Box textAlign="center">
+                      <Text fontSize="2xl">{el.utilization}</Text>
+                      <Text fontSize="xs" fontWeight="bold">
+                        Utilization
+                      </Text>
+                    </Box>
+                  </HStack>
+
+                </Box>
+
+
+
+                <Box flex={[4]} >
+
+                  <Box  >
+
+                    <Heading size="sm" mb={4} >
                       Outcome Metrics
                     </Heading>
-                    <Box display="flex">
+                    <HStack >
                       <Box flex={1} textAlign="center">
                         <Text fontSize="2xl">{el.winRate}</Text>
                         <Text fontSize="xs" fontWeight="bold">
@@ -314,16 +507,15 @@ function Page() {
                           Yield
                         </Text>
                       </Box>
-                    </Box>
-                    </Box>
-                    </Center>
+                    </HStack>
                   </Box>
                 </Box>
-              </Box>
+              </HStack>
             </Box>
           );
         })}
       </Stack>
+      </Styles>
     </Layout>
   );
 }
