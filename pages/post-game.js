@@ -182,7 +182,7 @@ function Page() {
                   color="yellow.400"
                 />
                 <Center pl={1} height="100%" justifyContent="left">
-                Try to pass on turns when no chains or combos available. Use conbo cards against enemy axies with high damage output.
+                Try to pass on turns when no chains or combos available. Use combo cards against enemy axies with high damage output.
                 </Center>
               </ListItem>
             </List>

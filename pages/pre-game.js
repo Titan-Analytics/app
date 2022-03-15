@@ -55,7 +55,7 @@ function Page() {
     {
       name: "Carlos",
       image: "/axis/red.png",
-      type: "Fire",
+      type: "Bug",
       stats: [
         {
           title: "Health",
@@ -145,7 +145,7 @@ function Page() {
     {
       name: "Sandra",
       image: "/axis/yellow.png",
-      type: "Sky",
+      type: "Dawn",
       stats: [
         {
           title: "Health",
@@ -313,7 +313,7 @@ function Page() {
                 needleBaseColor={useColorModeValue("#A0AEC0", "#718096")}
                 textColor={useColorModeValue("blue.500", "white")}
                 colors={["#E53E3E", "#ECC94B", "#38A169"]}
-                percent={0.9}
+                percent={0.55}
               />
             </Box>
           </Box>
