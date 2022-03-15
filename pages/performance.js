@@ -65,7 +65,7 @@ function Page() {
 
     let winActual = (100 * ( Math.random() )).toFixed(0);
     let winTarget = (100 * ( Math.random() )).toFixed(0);
-    let winVp = (( Math.abs(  winActual - winTarget ) / winTarget  ) / 100) .toFixed(2);
+    let winVp = (( Math.abs(  winActual - winTarget ) / winTarget  ) % 10) .toFixed(2);
 
     let earnActual = (100 + ( Math.random() * 100 )).toFixed(0);
     let earnTarget = (100 + ( Math.random() * 100 )).toFixed(0);
@@ -211,7 +211,7 @@ function Page() {
             </Heading>
 
             <HStack mb={4}>
-              <Input type={"date"} maxWidth={220} onChange={ randomize } />
+              <Input type={"date"} maxWidth={220}  onChange={ randomize } />
               <span style={{ margin: "0 20px" }}>to</span>
               <Input type="date" maxWidth={220} onChange={ randomize } />
             </HStack>
@@ -223,7 +223,7 @@ function Page() {
             >
               <Box rounded="xl" borderWidth={2}>
                 <Stack spacing={3} p={[2, 2, 4]} mb={[3, 4, 0]} px={[2, 2, 3]}>
-                  <BorderCenter minHeight={10}>
+                  <BorderCenter minHeight={8}>
                     <Heading size="sm">Matches Played</Heading>
                   </BorderCenter>
 
@@ -280,7 +280,7 @@ function Page() {
 
               <Box rounded="xl" borderWidth={2}>
                 <Stack spacing={3} p={[2, 2, 4]} mb={[3, 4, 0]} px={[2, 2, 3]}>
-                  <BorderCenter minHeight={10}>
+                  <BorderCenter minHeight={8}>
                     <Heading size="sm">Win Rate</Heading>
                   </BorderCenter>
 
@@ -336,7 +336,7 @@ function Page() {
 
               <Box rounded="xl" borderWidth={2}>
                 <Stack spacing={3} p={[2, 2, 4]} mb={[3, 4, 0]} px={[2, 2, 3]}>
-                  <BorderCenter minHeight={10}>
+                  <BorderCenter minHeight={8}>
                     <Heading size="sm">Daily Avg. Earnings</Heading>
                   </BorderCenter>
 
@@ -392,7 +392,7 @@ function Page() {
 
               <Box rounded="xl" borderWidth={2}>
                 <Stack spacing={3} p={[2, 2, 4]} mb={[3, 4, 0]} px={[2, 2, 3]}>
-                  <BorderCenter minHeight={10}>
+                  <BorderCenter minHeight={8}>
                     <Heading size="sm">Project Earnings</Heading>
                   </BorderCenter>
 

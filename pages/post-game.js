@@ -109,6 +109,7 @@ function Page() {
                 textColor={useColorModeValue("blue.500", "white")}
                 colors={["#E53E3E", "#ECC94B", "#38A169"]}
                 percent={0.55}
+                animate={false  }
               />
             </Box>
           </Box>

@@ -305,7 +305,7 @@ function Page() {
               Chance Of Success
             </Heading>
 
-            <Box className="gauge" maxWidth={280} m="0 auto" mb={-3}>
+            <Box className="gauge" maxWidth={220} mb={-3}>
               <GaugeChart
                 arcWidth={0.3}
                 animateDuration={1000}
@@ -314,6 +314,7 @@ function Page() {
                 textColor={useColorModeValue("blue.500", "white")}
                 colors={["#E53E3E", "#ECC94B", "#38A169"]}
                 percent={0.55}
+                animate={false}
               />
             </Box>
           </Box>
